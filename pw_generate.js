@@ -1,9 +1,18 @@
+// sample a element in collection
+// start generating PW
+// Math.random，產生 0 <= n < 1 的數字
+function sample(collection) {
+  let randomIndex = Math.floor(Math.random() * collection.length)
+  return collection[randomIndex]
+}
+
 function generatePW() {
   // define things user might want
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const upperCaseLetters = lowerCaseLetters.toUpperCase() // 變大寫
   const numbers = '1234567890'
   const symbols = '`~!@$%^&*()-_+={}[]|;:"<>,.?/' + "'"
+  let pw = ''
 
   // define dummy data
   const options = {
@@ -51,12 +60,18 @@ function generatePW() {
     // })
   }
 
-  console.log(collection) // 檢驗用
+  // console.log(collection) // 檢驗用
 
-  // start generating PW
+  // start generating PW (按密碼字數重複產生)
+  for (let i = 0; i < options.length; i++) {
+    pw += sample(collection)
+  }
+
+  console.log('single PW', sample(collection))
+  console.log('final PW', pw)
 
   // return PW
-  console.log('This function will generate PW')
+  // console.log('This function will generate PW')
 }
 
 generatePW()
