@@ -34,9 +34,24 @@ function generatePW() {
     collection = collection.concat(symbols.split(''))
   }
 
-  console.log(collection)
-
   // remove things user do not need
+  // filter, includes 這兩種方法
+  if (options.excludeCharacters) {
+    collection = collection.filter(
+      character => !options.excludeCharacters.includes(character)
+    )
+    //   {
+    //   return !options.excludeCharacters.includes(character)
+
+    //   // 反正上有 return，下面不會起作用 (上下文義相同)
+    //   if (options.excludeCharacters.includes(character)) {
+    //     return false
+    //   }
+    //   return true
+    // })
+  }
+
+  console.log(collection) // 檢驗用
 
   // start generating PW
 
