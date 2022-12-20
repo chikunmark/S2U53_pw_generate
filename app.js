@@ -3,6 +3,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const app = express()
+const generatePW = require('./pw_generate')
 const port = 3000
 
 // set template engine
@@ -19,8 +20,11 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  console.log(req.body)
-  res.render('index')
+  const options = req.body
+  const pw = generatePW(req.body)
+  console.log('req.body', req.body)
+  console.log(pw)
+  res.render('index', { pw, options: options })
 })
 
 app.listen(port, () => {
